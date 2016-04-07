@@ -25,11 +25,11 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
                 </tr>
                 </thead>
                 <tbody>
-                    <#if (Session.cart.goods)??>
+                 <#if ((Session.cart.goods)![])?size != 0 >
                     <#list Session.cart.goods?keys as goodId>
                 <tr>
                     <td class="cart_product">
-                        <a href=""><img src="/resources/images/cart/one.png" alt=""></a>
+                        <a href=""><img src="/resources/images/home/${good[goodId?number-1].imageUrl}" alt="" width="110" height="110"></a>
                     </td>
                     <td class="cart_description">
                         <h4><a href="">${good[goodId?number-1].name}</a></h4>
@@ -54,15 +54,19 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
                 </tr>
                 </tr>
                 </#list>
-                    <#else>
-                    <#list good as good>
 
-                    </#list>
-                    </#if>
                 </tbody>
             </table>
+                    <#else>
+                        <h1 align="center">Ваша корзина пуста!</h1>
+                    </#if>
         </div>
     </div>
+    <#if ((Session.cart.goods)![])?size != 0 >
+    <h1 align="center"> <a href="/order" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Buy All</a></h1>
+    список пуст
+    </#if>
+
 </section> <!--/#cart_items-->
 
 <section id="do_action">

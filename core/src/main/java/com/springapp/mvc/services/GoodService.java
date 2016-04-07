@@ -25,6 +25,7 @@ public class GoodService {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Transactional
     public GoodInfo getGood(Long goodId) {
         return goodRepository.getGoodById(goodId);
     }

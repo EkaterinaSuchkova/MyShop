@@ -15,8 +15,9 @@ $(document).ready(function () {
                 count: count
             }
         }).done(function (data) {
+            console.log(data);
             if (data = 'ok') {
-                alert('ok');
+                alert(count);
                 $('#count').val(count);
             }
         }).fail(function () {

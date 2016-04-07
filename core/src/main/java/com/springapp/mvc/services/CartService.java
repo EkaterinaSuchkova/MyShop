@@ -75,6 +75,19 @@ public class CartService {
         //обновляем в бд
 //        cartRepository.deleteFromCartByGoodId(goodId);
     }
+    @Transactional
+    public void deleteAllFromCart(HttpSession session) {
+        CartSessionInfo cart = (CartSessionInfo) session.getAttribute(Constants.SESSION_CART);
+
+        //обновляем в сессии
+        cart.getGoods().clear();
+        session.setAttribute(Constants.SESSION_CART, cart);
+
+        //обновляем в бд
+//        cartRepository.deleteFromCartByGoodId(goodId);
+    }
+
+
 
 }
 

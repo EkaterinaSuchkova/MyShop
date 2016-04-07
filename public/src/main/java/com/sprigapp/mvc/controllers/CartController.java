@@ -53,7 +53,7 @@ public class CartController {
     }
     @ResponseBody
     @RequestMapping(value = "/changeCount",method = RequestMethod.POST)
-    public String changeCount(@PathVariable("id") Long goodId, Integer count){
+    public String changeCount(Long goodId, Integer count){
         cartService.addInCart(goodId, request.getSession(), count);
         return "ok";
     }

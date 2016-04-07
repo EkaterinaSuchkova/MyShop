@@ -53,8 +53,8 @@ public class GoodRepositoryHibernate implements GoodRepository {
         // 1. It always hit the database and return the real object,
         //    an object that represent the database row, not proxy.
         // 2. If no row found , it return null.
-        return (GoodInfo) curSession().createSQLQuery("SELECT NAME, PRICE FROM H_GOODS WHERE ID = :goodId").addEntity(GoodInfo.class).setLong("goodId",goodId).list();
-
+        //return (GoodInfo) curSession().createSQLQuery("SELECT * FROM H_GOODS WHERE ID = :goodId").addEntity(GoodInfo.class).setLong("goodId",goodId);
+        return (GoodInfo) curSession().get(GoodInfo.class, goodId);
         // Запрос через Критерий. Можно и так. Но зачем?
 //        return (GoodInfo) curSession().createCriteria(GoodInfo.class).add(Restrictions.idEq(goodId));
     }
