@@ -1,3 +1,5 @@
+<#--@ftlvariable name="categoryWomanMenu" type="java.util.List<com.springapp.mvc.common.CategoryInfo>"-->
+<#--@ftlvariable name="categoryManMenu" type="java.util.List<com.springapp.mvc.common.CategoryInfo>"-->
 <#include "mainTemplate.ftl">
 <@mainTemplate title="Home | MyShop"
 styles=["css/bootstrap.min.css","css/font-awesome.min.css","css/prettyPhoto.css","css/price-range.css","css/animate.css","main.css","css/responsive.css"]
@@ -44,11 +46,14 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
                             <div id="mens" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><a href="/catalog/4">Shirts</a></li>
-                                        <li><a href="#">Jeans</a></li>
-                                        <li><a href="#">Jacket</a></li>
-                                        <li><a href="#">Footwear</a></li>
-                                        <li><a href="/catalog/2">All men products</a></li>
+                                    <#list categoryManMenu as menu>
+                                    <li><a href="/catalog/${menu.id}">${menu.name}</a> </li>
+                                        <#--<li><a href="/catalog/4">Shirts</a></li>-->
+                                        <#--<li><a href="#">Jeans</a></li>-->
+                                        <#--<li><a href="#">Jacket</a></li>-->
+                                        <#--<li><a href="#">Footwear</a></li>-->
+                                        <#--<li><a href="/catalog/2">All men products</a></li>-->
+                                    </#list>
                                     </ul>
                                 </div>
                             </div>
@@ -66,15 +71,19 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
                             <div id="womens" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><a href="/catalog/3">Shirts</a></li>
-                                        <li><a href="#">Jeans</a></li>
-                                        <li><a href="/catalog/7">Dress</a></li>
-                                        <li><a href="#">Footwear</a></li>
-                                        <li><a href="/catalog/1">All womans products</a></li>
+                                        <#list categoryWomanMenu as menu>
+                                        <li><a href="/catalog/${menu.id}">${menu.name}</a> </li>
+                                        <#--<li><a href="/catalog/3">Shirts</a></li>-->
+                                        <#--<li><a href="#">Jeans</a></li>-->
+                                        <#--<li><a href="/catalog/7">Dress</a></li>-->
+                                        <#--<li><a href="#">Footwear</a></li>-->
+                                        <#--<li><a href="/catalog/1">All womans products</a></li>-->
+                                        </#list>
                                     </ul>
                                 </div>
                             </div>
                         </div>
+
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title"><a href="#">Kids</a></h4>

@@ -1,5 +1,6 @@
 package com.sprigapp.mvc.controllers;
 
+import com.sprigapp.mvc.aspects.annotation.IncludeCategoryInfo;
 import com.springapp.mvc.common.GoodInfo;
 import com.springapp.mvc.services.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class CatalogController {
      * @param limit кол-во товаров отображаемых на странице
      * @return отображение каталога
      */
+    @IncludeCategoryInfo
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String renderCatalog(@PathVariable("id") Long id,
                                 @RequestParam(value = "page", required = false, defaultValue = "1") String page,
@@ -50,6 +52,7 @@ public class CatalogController {
     /**
      * Отображение главной страницы каталога
      */
+    @IncludeCategoryInfo
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
     public String mainCatalog(HttpServletRequest request) {
         request.setAttribute("message", "Главная страница каталога");
