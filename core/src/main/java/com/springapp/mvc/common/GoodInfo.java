@@ -43,6 +43,26 @@ public class GoodInfo {
      */
     private String gender;
 
+    private String sizee;
+
+    private String color;
+
+    public String getSize() {
+        return sizee;
+    }
+
+    public void setSize(String size) {
+        this.sizee = size;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryInfo category;

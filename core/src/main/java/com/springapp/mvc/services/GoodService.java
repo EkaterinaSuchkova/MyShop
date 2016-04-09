@@ -67,4 +67,30 @@ public class GoodService {
         }
         return goodInfos;
     }
+
+    @Transactional
+    public List<GoodInfo> getGoodByColorAndSize(String color, String size){
+        return goodRepository.getGoodByColorAndSize(color,size);
+    }
+
+    @Transactional
+    public List<GoodInfo> getGoodByColor(String color){
+        return goodRepository.getGoodByColor(color);
+    }
+
+    @Transactional
+    public List<GoodInfo> getGoodBySize(String size){
+        return goodRepository.getGoodBySize(size);
+    }
+
+    @Transactional
+    public List<GoodInfo> getGoodByPrice(BigDecimal min, BigDecimal max){
+        return goodRepository.getByPrice(min,max);
+    }
+
+    @Transactional
+    public List<GoodInfo> getGoodByAllFilters(String color, String size, BigDecimal minPrice, BigDecimal mixPrice){
+        return goodRepository.getGoodByColorAndSizeAndPrice(color, size, minPrice, mixPrice);
+    }
+
 }

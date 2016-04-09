@@ -121,39 +121,57 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
                         </div>
                     </div><!--/category-products-->
 
+
                     <div class="brands_products"><!--brands_products-->
-                        <h2>Brands</h2>
+                        <h2>Filters</h2>
+                        <form method="get" action="/filter">
                         <div class="brands-name">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
-                                <li><a href="#"> <span class="pull-right">(56)</span>Gr?ne Erde</a></li>
-                                <li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
-                                <li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
-                                <li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
-                                <li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
-                                <li><a href="#"> <span class="pull-right">(4)</span>R?sch creative culture</a></li>
-                            </ul>
-                        </div>
-                    </div><!--/brands_products-->
+                            <p align="center"><b>Color</b><Br>
+                                <input type="radio" name="color" value="Blue">Blue<Br>
+                                <input type="radio" name="color" value="Red">Red<Br>
+                                <input type="radio" name="color" value="Black">Black<Br>
+                            </p>
+                            <p align="center"><b>Size</b><Br>
+                                <input type="radio" name="size" value="42">42<Br>
+                                <input type="radio" name="size" value="44">44<Br>
+                                <input type="radio" name="size" value="46">46<Br>
+                            </p>
+                            <#--<ul class="nav nav-pills nav-stacked">-->
+                                <#--<li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>-->
+                                <#--<li><a href="#"> <span class="pull-right">(56)</span>Gr?ne Erde</a></li>-->
+                                <#--<li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>-->
+                                <#--<li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>-->
+                                <#--<li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>-->
+                                <#--<li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>-->
+                                <#--<li><a href="#"> <span class="pull-right">(4)</span>R?sch creative culture</a></li>-->
+                            <#--</ul>-->
+
+                    <!--/brands_products-->
 
                     <div class="price-range"><!--price-range-->
                         <h2>Price Range</h2>
                         <div class="well text-center">
-                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-                            <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+                            <p align="center"><b>Min price</b><Br>
+                            <input type="number" class="form-control" name="min" value="0"><br />
+                            </p>
+                            <p align="center"><b>Max price</b><Br>
+                                <input type="number" class="form-control" name="max" value="100000"><br />
+                            </p>
                         </div>
                     </div><!--/price-range-->
-
-                    <div class="shipping text-center"><!--shipping-->
-                        <img src="images/home/shipping.jpg" alt="" />
-                    </div><!--/shipping-->
-
+                        </div>
+                    </div>
+                        <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+                    </form>
+                    <br>
                 </div>
             </div>
 
             <div class="col-sm-9 padding-right">
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Sales Items</h2>
+                    <#--<h1>ЦВЕТ:${color}</h1>-->
+                    <#--<h1>РАЗМЕР:${size}</h1>-->
                     <#list goods as good>
                         <#if !limit?? || good_index < limit>
                     <div class="col-sm-4">
@@ -167,7 +185,6 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
                                 </div>
                                 <div class="product-overlay">
                                     <div class="overlay-content">
-                                        <h8>${good.description?replace(",","\n")}</h8>
                                         <h2>${good.price?number}</h2>
                                         <p> ${good.name}</p>
                                         <a href="/good/${good.id}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Show more</a>

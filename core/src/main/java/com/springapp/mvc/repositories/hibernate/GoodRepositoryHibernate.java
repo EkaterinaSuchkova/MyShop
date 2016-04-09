@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +74,31 @@ public class GoodRepositoryHibernate implements GoodRepository {
     @Override
     public List<GoodInfo> getGoodByCategoryId(Long categoryId) {
         return (List<GoodInfo>) curSession().createSQLQuery("SELECT * FROM H_GOODS WHERE CATEGORY_ID = :catId").addEntity(GoodInfo.class).setLong("catId",categoryId).list();
+    }
+
+    @Override
+    public List<GoodInfo> getGoodByColorAndSize(String color, String sizee) {
+        return (List<GoodInfo>) curSession().createSQLQuery("SELECT * FROM H_GOODS WHERE COLOR LIKE :color and SIZEE LIKE :sizee").addEntity(GoodInfo.class).setString("color",color).setString("sizee",sizee).list();
+    }
+
+    @Override
+    public List<GoodInfo> getGoodByColor(String color) {
+        return (List<GoodInfo>) curSession().createSQLQuery("SELECT * FROM H_GOODS WHERE COLOR LIKE :color").addEntity(GoodInfo.class).setString("color",color).list();
+    }
+
+    @Override
+    public List<GoodInfo> getGoodBySize(String sizee) {
+        return (List<GoodInfo>) curSession().createSQLQuery("SELECT * FROM H_GOODS WHERE SIZEE LIKE :sizee").addEntity(GoodInfo.class).setString("sizee", sizee).list();
+    }
+
+    @Override
+    public List<GoodInfo> getByPrice(BigDecimal minPrice,BigDecimal maxPrice) {
+        return (List<GoodInfo>) curSession().createSQLQuery("SELECT * FROM H_GOODS WHERE PRICE BETWEEN :minPrice AND :maxPrice").addEntity(GoodInfo.class).setBigDecimal("minPrice",minPrice).setBigDecimal("maxPrice",maxPrice).list();
+    }
+
+    @Override
+    public List<GoodInfo> getGoodByColorAndSizeAndPrice(String color, String size, BigDecimal minPrice, BigDecimal mixPrice) {
+        return (List<GoodInfo>) curSession().createSQLQuery("SELECT * FROM H_GOODS WHERE COLOR LIKE :color and SIZEE LIKE :sizee AND PRICE BETWEEN :minPrice AND :maxPrice").addEntity(GoodInfo.class).setString("color",color).setString("sizee",size).setBigDecimal("minPrice",minPrice).setBigDecimal("maxPrice", mixPrice).list();
     }
 
 }
