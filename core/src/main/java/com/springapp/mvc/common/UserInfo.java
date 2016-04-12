@@ -24,28 +24,41 @@ public class UserInfo {
 
     private String hashPassword;
 
-    public String getLogin() {
-        return login;
+    private Boolean enabled;
+
+    private String role;
+
+
+    @OneToOne                          // определяет отношение один к одному
+    @JoinColumn(name = "address_id")
+    // связка с таблицей Address будет происходить по столбцу address_id в таблице Customer
+    private AddressInfo address;
+
+    @OneToMany(cascade = CascadeType.REFRESH,
+            fetch = FetchType.LAZY,
+            mappedBy = "userInfo")
+    private List<OrderInfo> orders;
+
+    @OneToMany(cascade = CascadeType.REFRESH,
+            fetch = FetchType.LAZY,
+            mappedBy = "userInfo")
+    private List<CartInfo> cartInfos;
+
+    public UserInfo() {
     }
 
-    public void setLogin(String login) {
+    public UserInfo(Long userId) {
+        this.id = userId;
+    }
+
+    public UserInfo(String name, String email, String login, String hashPassword, Boolean enabled, String role, AddressInfo address) {
+        this.name = name;
+        this.email = email;
         this.login = login;
-    }
-
-    public String getHashPassword() {
-        return hashPassword;
-    }
-
-    public void setHashPassword(String hashPassword) {
         this.hashPassword = hashPassword;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
+        this.enabled = enabled;
         this.role = role;
+        this.address = address;
     }
 
     public Boolean getEnabled() {
@@ -56,37 +69,12 @@ public class UserInfo {
         this.enabled = enabled;
     }
 
-    public List<CartInfo> getCartInfos() {
-        return cartInfos;
+    public String getRole() {
+        return role;
     }
 
-    public void setCartInfos(List<CartInfo> cartInfos) {
-        this.cartInfos = cartInfos;
-    }
-
-    private String role;
-
-    private Boolean enabled;
-
-    @OneToOne                          // определяет отношение один к одному
-    @JoinColumn(name = "address_id")   // связка с таблицей Address будет происходить по столбцу address_id в таблице Customer
-    private AddressInfo address;
-
-    @OneToMany(cascade = CascadeType.REFRESH,
-            fetch = FetchType.LAZY,
-            mappedBy="userInfo")
-    private List<OrderInfo> orders;
-
-    @OneToMany(cascade = CascadeType.REFRESH,
-            fetch = FetchType.LAZY,
-            mappedBy="userInfo")
-    private List<CartInfo> cartInfos;
-
-    public UserInfo() {
-    }
-
-    public UserInfo(Long userId) {
-        this.id = userId;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Long getId() {
@@ -113,6 +101,22 @@ public class UserInfo {
         this.email = email;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getHashPassword() {
+        return hashPassword;
+    }
+
+    public void setHashPassword(String hashPassword) {
+        this.hashPassword = hashPassword;
+    }
+
     public AddressInfo getAddress() {
         return address;
     }
@@ -128,4 +132,14 @@ public class UserInfo {
     public void setOrders(List<OrderInfo> orders) {
         this.orders = orders;
     }
+
+    public List<CartInfo> getCartInfos() {
+        return cartInfos;
+    }
+
+    public void setCartInfos(List<CartInfo> cartInfos) {
+        this.cartInfos = cartInfos;
+    }
 }
+
+

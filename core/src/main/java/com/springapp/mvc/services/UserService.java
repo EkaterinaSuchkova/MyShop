@@ -20,5 +20,10 @@ public class UserService {
         return userRepository.getUserByLogin(login);
     }
 
+    @Transactional
+    public void add(UserInfo userInfo){
+        userRepository.addUser(userInfo);
+    }
+
 
 }

@@ -6,8 +6,7 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
 
 <section id="form"><!--form-->
     <div class="container">
-        <div class="row">
-            <div class="col-sm-4 col-sm-offset-1">
+        <div class="row" style="width: 600px; margin-left: 300px">
                 <div class="login-form"><!--login form-->
                     <h2>Login to your account</h2>
                     <#if error?has_content>
@@ -26,25 +25,10 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
                             <input id="remember_me" name="_spring_security_remember_me" type="checkbox"/>
                             <label for="remember_me" class="inline">Remember me</label>
                         </div>
-                        <input type="submit" value="Login" />
-                        <a href="/login" style="margin-left: 15px;">Create an account</a>
+                        <input type="submit" class="btn btn-primary pull-right" value="Login" />
+                        <a href="/reg" style="margin-left: 15px;">Create an account</a>
                     </form>
                 </div><!--/login form-->
-            </div>
-            <div class="col-sm-1">
-                <h2 class="or">OR</h2>
-            </div>
-            <div class="col-sm-4">
-                <div class="signup-form"><!--sign up form-->
-                    <h2>New User Signup!</h2>
-                    <form action="/registration">
-                        <input type="text" placeholder="Name"/>
-                        <input type="email" placeholder="Email Address"/>
-                        <input type="password" placeholder="Password"/>
-                        <button type="submit" class="btn btn-default">Signup</button>
-                    </form>
-                </div><!--/sign up form-->
-            </div>
         </div>
     </div>
 </section><!--/form-->
