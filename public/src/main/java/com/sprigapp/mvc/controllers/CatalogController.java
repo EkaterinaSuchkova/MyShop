@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,20 +32,31 @@ public class CatalogController {
      * Отображение каталога
      *
      * @param id    id категории
-     * @param page  номер страницы
-     * @param limit кол-во товаров отображаемых на странице
      * @return отображение каталога
      */
     @IncludeCategoryInfo
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String renderCatalog(@PathVariable("id") Long id,
-                                @RequestParam(value = "page", required = false, defaultValue = "1") String page,
-                                Long limit,
-                                Model model) {
-        List<GoodInfo> goods = goodService.getGoodByCategory(id);
-        model.addAttribute("goods",goods);
-        model.addAttribute("page", page);
-        model.addAttribute("limit", limit);
+                                Model model,
+                                @RequestParam(value = "sort",required = false, defaultValue = "ascPrice") String sort) {
+        if(sort.equals("descPrice")){
+            List<GoodInfo> goods = goodService.getGoodByCategoryAsc(id);
+            Collections.reverse(goods);
+            model.addAttribute("goods",goods);
+        }
+        if(sort.equals("ascPrice")){
+            List<GoodInfo> goods = goodService.getGoodByCategoryAsc(id);
+            model.addAttribute("goods",goods);
+        }
+        if(sort.equals("ascName")){
+            List<GoodInfo> goods = goodService.getGoodByCategoryAscName(id);
+            model.addAttribute("goods",goods);
+        }
+        if(sort.equals("descName")){
+            List<GoodInfo> goods = goodService.getGoodByCategoryAscName(id);
+            Collections.reverse(goods);
+            model.addAttribute("goods",goods);
+        }
         return "catalog";
     }
 
@@ -54,10 +66,28 @@ public class CatalogController {
      */
     @IncludeCategoryInfo
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
-    public String mainCatalog(HttpServletRequest request) {
+    public String mainCatalog(HttpServletRequest request,
+                              @RequestParam(value = "sort",required = false, defaultValue = "ascPrice") String sort) {
         request.setAttribute("message", "Главная страница каталога");
-        List<GoodInfo> goods = goodService.getSaleGood();
-        request.setAttribute("goods", goods);
+        if(sort.equals("descPrice")){
+            List<GoodInfo> goods = goodService.getSaleGood();
+            Collections.reverse(goods);
+            request.setAttribute("goods", goods);
+        }
+        if(sort.equals("ascPrice")){
+            List<GoodInfo> goods = goodService.getSaleGood();
+            request.setAttribute("goods", goods);
+        }
+        if(sort.equals("ascName")){
+            List<GoodInfo> goods = goodService.getSaleGoodNameAsc();
+            request.setAttribute("goods", goods);
+        }
+        if(sort.equals("descName")){
+            List<GoodInfo> goods = goodService.getSaleGoodNameAsc();
+            Collections.reverse(goods);
+            request.setAttribute("goods",goods);
+        }
+
         return "catalog";
     }
 }

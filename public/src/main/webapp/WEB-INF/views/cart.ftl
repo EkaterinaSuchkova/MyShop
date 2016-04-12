@@ -43,6 +43,7 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
                             <a class="cart_quantity_up changeCount" data-id="${goodId}" data-count="${Session.cart.getCount(goodId)+1}" href="#"> + </a>
                             <input id="count" class="cart_quantity_input" type="text" name="quantity" value="${Session.cart.getCount(goodId)}" autocomplete="off" size="2">
                             <a class="cart_quantity_down changeCount" data-id="${goodId}" data-count="${Session.cart.getCount(goodId)-1}" href="#"> - </a>
+                        ${Session.cart.getCount(goodId)}
                         </div>
                     </td>
                     <td class="cart_total">
@@ -64,7 +65,7 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
     </div>
     <#if ((Session.cart.goods)![])?size != 0 >
     <h1 align="center"> <a href="/order" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Buy All</a></h1>
-    список пуст
+
     </#if>
 
 </section> <!--/#cart_items-->

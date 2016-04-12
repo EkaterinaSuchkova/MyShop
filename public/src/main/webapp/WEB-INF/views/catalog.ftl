@@ -170,6 +170,9 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
             <div class="col-sm-9 padding-right">
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Sales Items</h2>
+                    <br>
+                    <h2 class="title text-center"><a href="?sort=descPrice"><button  class="btn btn-default" name="sort" value="DescPrice">DescPrice</button></a><a href="?sort=ascPrice"><button  class="btn btn-default" name="sort" value="AscPrice">AscPrice</button></a>
+                        <a href="?sort=descName"><button  class="btn btn-default" name="sort" value="DescPrice">DescName</button></a><a href="?sort=ascName"><button  class="btn btn-default" name="sort" value="AscName">AscName</button></a></h2>
                     <#--<h1>ЦВЕТ:${color}</h1>-->
                     <#--<h1>РАЗМЕР:${size}</h1>-->
                     <#list goods as good>
@@ -177,11 +180,13 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
                             <div class="single-products">
-                                <div class="productinfo text-center">
+                                <div id="menu">
+                                <div class="productinfo text-center my-products">
                                     <img src="/resources/images/home/${good.imageUrl}" alt="" />
                                     <h2>${good.price?number}</h2>
-                                    <p> ${good.name}</p>
+                                    <p class="menu-txt"> ${good.name}</p>
                                     <a href="/cart/add/${good.id}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                </div>
                                 </div>
                                 <div class="product-overlay">
                                     <div class="overlay-content">

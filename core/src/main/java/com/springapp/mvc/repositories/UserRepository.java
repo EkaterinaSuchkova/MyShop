@@ -9,4 +9,5 @@ public interface UserRepository {
     void addUser(UserInfo userInfo);
     void deleteUser(Long userId);
     void updateUser(UserInfo userInfo);
+    public UserInfo getUserByLogin(String login);
 }

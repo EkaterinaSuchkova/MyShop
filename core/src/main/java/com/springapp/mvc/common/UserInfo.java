@@ -20,6 +20,54 @@ public class UserInfo {
     @Column(name = "email", unique = true)  // указываем, что email должен быть уникальным
     private String email;
 
+    private String login;
+
+    private String hashPassword;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getHashPassword() {
+        return hashPassword;
+    }
+
+    public void setHashPassword(String hashPassword) {
+        this.hashPassword = hashPassword;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public List<CartInfo> getCartInfos() {
+        return cartInfos;
+    }
+
+    public void setCartInfos(List<CartInfo> cartInfos) {
+        this.cartInfos = cartInfos;
+    }
+
+    private String role;
+
+    private Boolean enabled;
+
     @OneToOne                          // определяет отношение один к одному
     @JoinColumn(name = "address_id")   // связка с таблицей Address будет происходить по столбцу address_id в таблице Customer
     private AddressInfo address;

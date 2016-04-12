@@ -67,14 +67,26 @@ public class GoodRepositoryHibernate implements GoodRepository {
 
     @Override
     public List<GoodInfo> getSaleGoods(String status) {
-        return  (List<GoodInfo>) curSession().createQuery("from GoodInfo where status like :status")
+        return  (List<GoodInfo>) curSession().createQuery("from GoodInfo where status like :status ORDER BY price asc")
                 .setString("status",status).list();
     }
 
     @Override
-    public List<GoodInfo> getGoodByCategoryId(Long categoryId) {
-        return (List<GoodInfo>) curSession().createSQLQuery("SELECT * FROM H_GOODS WHERE CATEGORY_ID = :catId").addEntity(GoodInfo.class).setLong("catId",categoryId).list();
+    public List<GoodInfo> getSaleGoodsNameAsc(String status) {
+        return  (List<GoodInfo>) curSession().createQuery("from GoodInfo where status like :status ORDER BY name asc")
+                .setString("status",status).list();
     }
+
+    @Override
+    public List<GoodInfo> getGoodByCategoryIdAsc(Long categoryId) {
+        return (List<GoodInfo>) curSession().createSQLQuery("SELECT * FROM H_GOODS WHERE CATEGORY_ID = :catId ORDER BY PRICE ASC").addEntity(GoodInfo.class).setLong("catId",categoryId).list();
+    }
+
+    @Override
+    public List<GoodInfo> getGoodByCategoryIdAscName(Long categoryId) {
+        return (List<GoodInfo>) curSession().createSQLQuery("SELECT * FROM H_GOODS WHERE CATEGORY_ID = :catId ORDER BY NAME ASC").addEntity(GoodInfo.class).setLong("catId",categoryId).list();
+    }
+
 
     @Override
     public List<GoodInfo> getGoodByColorAndSize(String color, String sizee) {

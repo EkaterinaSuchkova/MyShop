@@ -41,7 +41,7 @@ public class CartService {
             cart.setGoods(map);
         } else {
             if (cart.getGoods().containsKey(goodId)) {
-                cart.getGoods().put(goodId, cart.getGoods().get(goodId) + count);
+                cart.getGoods().put(goodId, count);
             } else {
                 cart.getGoods().put(goodId, count);
             }

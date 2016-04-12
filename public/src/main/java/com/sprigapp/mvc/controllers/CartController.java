@@ -53,8 +53,8 @@ public class CartController {
     }
     @ResponseBody
     @RequestMapping(value = "/changeCount",method = RequestMethod.POST)
-    public String changeCount(Long goodId, Integer count){
-        cartService.addInCart(goodId, request.getSession(), count);
+    public String changeCount(Long id, Integer count){
+        cartService.addInCart(id, request.getSession(), count);
         return "ok";
     }
 }

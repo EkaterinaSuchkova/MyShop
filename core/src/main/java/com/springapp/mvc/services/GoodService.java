@@ -57,12 +57,29 @@ public class GoodService {
     }
 
     @Transactional
-    public List<GoodInfo> getGoodByCategory(Long categoryId){
-        List<GoodInfo> goodInfos = goodRepository.getGoodByCategoryId(categoryId);
+    public List<GoodInfo> getSaleGoodNameAsc(){
+        return goodRepository.getSaleGoodsNameAsc("sale");
+    }
+
+    @Transactional
+    public List<GoodInfo> getGoodByCategoryAsc(Long categoryId){
+        List<GoodInfo> goodInfos = goodRepository.getGoodByCategoryIdAsc(categoryId);
         List<CategoryInfo> categoryInfos = categoryRepository.getChildCategory(categoryId);
         if(categoryInfos != null) {
             for (CategoryInfo categoryInfo : categoryInfos) {
-                goodInfos.addAll(goodRepository.getGoodByCategoryId(categoryInfo.getId()));
+                goodInfos.addAll(goodRepository.getGoodByCategoryIdAsc(categoryInfo.getId()));
+            }
+        }
+        return goodInfos;
+    }
+
+    @Transactional
+    public List<GoodInfo> getGoodByCategoryAscName(Long categoryId){
+        List<GoodInfo> goodInfos = goodRepository.getGoodByCategoryIdAscName(categoryId);
+        List<CategoryInfo> categoryInfos = categoryRepository.getChildCategory(categoryId);
+        if(categoryInfos != null) {
+            for (CategoryInfo categoryInfo : categoryInfos) {
+                goodInfos.addAll(goodRepository.getGoodByCategoryIdAscName(categoryInfo.getId()));
             }
         }
         return goodInfos;

@@ -1,5 +1,6 @@
 package com.sprigapp.mvc.controllers;
 
+import com.sprigapp.mvc.aspects.annotation.IncludeCategoryInfo;
 import com.springapp.mvc.common.GoodInfo;
 import com.springapp.mvc.services.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class GoodController {
     @Autowired
     private GoodService goodService;
 
+    @IncludeCategoryInfo
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String showInfo(@PathVariable("id") Long goodId, Model model){
         GoodInfo goodInfo = goodService.getGood(goodId);

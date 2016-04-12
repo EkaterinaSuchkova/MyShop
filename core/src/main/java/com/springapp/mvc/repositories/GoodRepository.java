@@ -23,7 +23,11 @@ public interface GoodRepository {
 
     public List<GoodInfo> getSaleGoods(String status);
 
-    public List<GoodInfo> getGoodByCategoryId(Long categoryId);
+    public List<GoodInfo> getSaleGoodsNameAsc(String status);
+
+    public List<GoodInfo> getGoodByCategoryIdAsc(Long categoryId);
+
+    public List<GoodInfo> getGoodByCategoryIdAscName(Long categoryId);
 
     public List<GoodInfo> getGoodByColorAndSize(String color, String size);
 

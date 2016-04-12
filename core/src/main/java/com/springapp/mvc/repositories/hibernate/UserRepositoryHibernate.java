@@ -34,4 +34,9 @@ public class UserRepositoryHibernate implements UserRepository {
     public void updateUser(UserInfo userInfo) {
         curSession().update(userInfo);
     }
+
+    @Override
+    public UserInfo getUserByLogin(String login) {
+        return (UserInfo) curSession().createSQLQuery("SELECT * FROM H_USER WHERE LOGIN = :login").addEntity(UserInfo.class).setString("login", login);
+    }
 }
