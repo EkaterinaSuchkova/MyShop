@@ -18,12 +18,16 @@ public class CategoryService {
 
     @Autowired
     CategoryRepository categoryRepository;
-
+    /**
+     * Метод получения женских товаров
+     */
     @Transactional
     public List<CategoryInfo> getWomanCategories(){
         return categoryRepository.getChildCategory(1L);
     }
-
+    /**
+     * Метод получения мужских товаров
+     */
     @Transactional
     public List<CategoryInfo> getManCategories(){
         return categoryRepository.getChildCategory(2L);

@@ -35,16 +35,22 @@ public class GoodInfo {
      */
     private String imageUrl;
 
-
+    /**
+     * Статус товара, например:sale-находится в распродаже
+     */
     private String status;
 
     /**
      * Категория товара
      */
     private String gender;
-
+    /**
+     * Размер товара-одежды
+     */
     private String sizee;
-
+    /**
+     * Цвет товара
+     */
     private String color;
 
     public String getSize() {
@@ -62,7 +68,9 @@ public class GoodInfo {
     public void setColor(String color) {
         this.color = color;
     }
-
+    /**
+     * Поле id категории товара, связь с таблицей категорий
+     */
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryInfo category;

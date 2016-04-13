@@ -37,7 +37,7 @@ public class RegistrationController {
     @RequestMapping(method = RequestMethod.GET)
     public String renderRegistrationPage() {
         request.setAttribute(ATTR_REGISTRATION_FORM, new RegistrationFormBean());
-        return "registration";
+        return "registrtion/registration";
     }
 
     /**
@@ -46,16 +46,15 @@ public class RegistrationController {
     @RequestMapping(method = RequestMethod.POST)
     public String registrationForm(
             @Valid @ModelAttribute(ATTR_REGISTRATION_FORM) RegistrationFormBean registrationFormBean,
-//            RegistrationFormBean registrationFormBean, // TODO хотя работает и без этой аннотации, обычно её используют для переименования аргумента
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "registrtion/registration";
         }
         userService.add(new UserInfo(registrationFormBean.getFirstName().concat(" ").concat(registrationFormBean.getLastName()),
                 registrationFormBean.getEmail(),registrationFormBean.getEmail(),DigestUtils.md5DigestAsHex(registrationFormBean.getPassword().getBytes()),false,"ROLE_USER",
                 new AddressInfo(1L)));
         System.out.println(registrationFormBean);
-        return "login";
+        return "login/login";
     }
 
 

@@ -9,36 +9,54 @@ import java.util.List;
 @Entity
 @Table(name = "h_user")
 public class UserInfo {
-    @Id                    // т.е. данное поле является id (уникальным)
-    @Column(name = "id")   // обозначает имя колонки, соответствующей данному полю
-    @GeneratedValue(strategy = GenerationType.AUTO)  // определяет способ генерации
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    /**
+     * Имя юзера
+     */
     @Column(name = "name")
     private String name;
-
+    /**
+     * e-mail юзера
+     */
     @Column(name = "email", unique = true)  // указываем, что email должен быть уникальным
     private String email;
-
+    /**
+     * Логин юзера
+     */
     private String login;
-
+    /**
+     * Хэш пароля
+     */
     private String hashPassword;
-
+    /**
+     * Поле - активность юзера
+     */
     private Boolean enabled;
-
+    /**
+     * Роль юзера
+     */
     private String role;
 
-
+    /**
+     * Поле id адереся,связь с таблицей адресов
+     */
     @OneToOne                          // определяет отношение один к одному
     @JoinColumn(name = "address_id")
     // связка с таблицей Address будет происходить по столбцу address_id в таблице Customer
     private AddressInfo address;
-
+    /**
+     * Связь с таблицей заказов
+     */
     @OneToMany(cascade = CascadeType.REFRESH,
             fetch = FetchType.LAZY,
             mappedBy = "userInfo")
     private List<OrderInfo> orders;
-
+    /**
+     * Связь с таблицей корзин
+     */
     @OneToMany(cascade = CascadeType.REFRESH,
             fetch = FetchType.LAZY,
             mappedBy = "userInfo")

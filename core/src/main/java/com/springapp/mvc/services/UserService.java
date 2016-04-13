@@ -14,12 +14,16 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-
+    /**
+     * Получить юзера по указанному login
+     */
     @Transactional
     public UserInfo getUserByLogin(String login) {
         return userRepository.getUserByLogin(login);
     }
-
+    /**
+     * Добавить юзера
+     */
     @Transactional
     public void add(UserInfo userInfo){
         userRepository.addUser(userInfo);

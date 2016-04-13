@@ -14,6 +14,10 @@ import java.util.List;
 /**
  * Created by Катя on 08.04.2016.
  */
+
+/**
+ * Аспект для вынесения левого меню категорий
+ */
 @Aspect
 @Component
 public class MainCategoryMenuAspect {
@@ -34,8 +38,8 @@ public class MainCategoryMenuAspect {
 
     @Before("includeMenuInfoMethod()")
     public void includeMenuInfo() {
-        List<CategoryInfo> listMenu = categoryService.getWomanCategories();
-        List<CategoryInfo> listMenu2 = categoryService.getManCategories();
+        List<CategoryInfo> listMenu = categoryService.getWomanCategories();//получение женских товаров
+        List<CategoryInfo> listMenu2 = categoryService.getManCategories();//получение мужских товаров
         request.setAttribute(MAIN_CATEGORY_WOMAN_LIST, listMenu);
         request.setAttribute(MAIN_CATEGORY_MAN_LIST, listMenu2);
     }

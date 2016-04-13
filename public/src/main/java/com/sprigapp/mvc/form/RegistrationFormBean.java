@@ -6,7 +6,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
+/**
+ * Класс описывающий форму регистрации
+ */
 public class RegistrationFormBean {
 
     @NotEmpty(message = "Поле обязательно для заполнения")

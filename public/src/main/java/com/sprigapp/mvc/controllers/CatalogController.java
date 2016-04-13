@@ -15,12 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Контроллер отвечающий за каталог
- *
- * Gataullin Kamil
- * 22.02.2016 22:46
- */
+
 @Controller
 @RequestMapping("/catalog")
 public class CatalogController {
@@ -30,11 +25,8 @@ public class CatalogController {
 
     /**
      * Отображение каталога
-     *
-     * @param id    id категории
-     * @return отображение каталога
      */
-    @IncludeCategoryInfo
+    @IncludeCategoryInfo//аннотоация аспекта выносящего левое меню категорий
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String renderCatalog(@PathVariable("id") Long id,
                                 Model model,
@@ -57,12 +49,12 @@ public class CatalogController {
             Collections.reverse(goods);
             model.addAttribute("goods",goods);
         }
-        return "catalog";
+        return "catalog/catalog";
     }
 
 
     /**
-     * Отображение главной страницы каталога
+     * Отображение главной страницы каталога(товары со статусом sale)
      */
     @IncludeCategoryInfo
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
@@ -88,6 +80,6 @@ public class CatalogController {
             request.setAttribute("goods",goods);
         }
 
-        return "catalog";
+        return "catalog/catalog";
     }
 }

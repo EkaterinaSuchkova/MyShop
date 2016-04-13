@@ -1,7 +1,6 @@
 package com.sprigapp.mvc.controllers;
 
 import com.sprigapp.mvc.form.ContactFormBean;
-import com.sprigapp.mvc.form.OrderFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -23,23 +22,27 @@ public class ContactController {
     private HttpServletRequest request;
 
     public static final String ATTR_CONTACT_FORM = "contactForm";
-
+    /**
+     * Рендеринг формы обратнойсвязи
+     */
     @RequestMapping(method = RequestMethod.GET)
     public String renderOrderForm(){
         request.setAttribute(ATTR_CONTACT_FORM, new ContactFormBean());
-        return "contact";
+        return "contact/contact";
     }
-
+    /**
+     * Обработка формы обратной связи
+     */
     @RequestMapping(method = RequestMethod.POST)
     public String contactForm(
             @Valid @ModelAttribute(ATTR_CONTACT_FORM) ContactFormBean contactFormBean,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "contact";
+            return "contact/contact";
         }
         // здесь должно происходить занесение жалобы текущего пользователя в базу
         System.out.println(contactFormBean);
-        return "successContact";
+        return "contact/successContact";
     }
 
 

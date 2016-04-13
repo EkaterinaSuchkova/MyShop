@@ -11,28 +11,36 @@ import java.util.List;
 @Table(name = "h_order")
 public class OrderInfo {
 
-    @Id                    // т.е. данное поле €вл€етс€ id (уникальным)
-    @GeneratedValue(strategy = GenerationType.AUTO)  // определ€ет способ генерации
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    // @Column(name = "name") название колонки можно не указывать, тогда будет использовано название пол€.
+    /**
+     * Ќазвание заказа
+     */
     private String name;
-
+    /**
+     * ƒата заказа
+     */
     @Column(name = "creation_date")
     private Date creationDate;
-
-    @ManyToOne                                  // определ€ет отношение многие к одному
+    /**
+     * ѕоле id заказчика, св€зь с таблицей юзеров
+     */
+    @ManyToOne
             (cascade = {CascadeType.REFRESH},
-                    fetch = FetchType.LAZY)    // подгрузка объектов списка сразу
+                    fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private UserInfo userInfo;
-
-    @ManyToMany                                 // определ€ет отношение многие ко многим
+    /**
+     * ¬спомогательна€ таблица, дл€ устранени€ св€зи многие ко многим
+     */
+    @ManyToMany
             (cascade = CascadeType.REFRESH,
-                    fetch = FetchType.LAZY)     // подгрузка объектов только при обращении к ним
-    @JoinTable(name = "h_ORDERS_GOODS",           // вспомогательна€ св€зывающа€ таблица дл€ отношений многие ко многим
-            joinColumns = @JoinColumn(name = "ORDER_ID"),        // название колонки дл€ св€зи с текущей таблицей Orders
-            inverseJoinColumns = @JoinColumn(name = "GOOD_ID"))  // название колонки дл€ св€зываемой таблицы Goods
+                    fetch = FetchType.LAZY)
+    @JoinTable(name = "h_ORDERS_GOODS",
+            joinColumns = @JoinColumn(name = "ORDER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "GOOD_ID"))
     private List<GoodInfo> goods;
 
     public OrderInfo(){}

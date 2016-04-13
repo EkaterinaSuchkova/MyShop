@@ -12,15 +12,21 @@ public class CartInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    /**
+     * Поле id товара, связь с таблицей товаров
+     */
     @ManyToOne
     @JoinColumn(name = "good_id")
     private GoodInfo goodInfo;
-
+    /**
+     * Поле id юзера, связь с таблицей юзеров
+     */
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserInfo userInfo;
-
+    /**
+     * Количество товара в корзине
+     */
     @Column
     private Integer count;
 

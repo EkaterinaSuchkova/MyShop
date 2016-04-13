@@ -15,11 +15,13 @@ public class LoginController {
 
     @Autowired
     private HttpServletRequest request;
-
+    /**
+     * Отображение страницы логина
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String renderLoginPage(Boolean error) {
         request.setAttribute("error", error);
-        return "login";
+        return "login/login";
     }
 
 

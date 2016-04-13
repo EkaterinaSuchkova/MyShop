@@ -29,23 +29,29 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-
+    /**
+     * Добавление товара в корзину по id товара
+     */
     @RequestMapping(value = "/add/{id}",method = RequestMethod.GET)
     public String addInCart(@PathVariable("id") Long goodId, Model model){
         cartService.addInCart(goodId, request.getSession(), 1);
         //GoodInfo goodInfo = goodService.getGood(goodId);
         List<GoodInfo> goodInfo = goodService.selectAll();
         model.addAttribute("good", goodInfo);
-        return "cart";
+        return "cart/cart";
     }
-
+    /**
+     * Рендеринг страницы - корзины
+     */
     @RequestMapping(method = RequestMethod.GET)
     public String renderCart(Model model){
         List<GoodInfo> goodInfo = goodService.selectAll();
         model.addAttribute("good", goodInfo);
-        return "cart";
+        return "cart/cart";
     }
-
+    /**
+     * Удаление товара из корзины
+     */
     @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
     public String deleteFromCart(@PathVariable("id") Long goodId){
         cartService.deleteFromCart(request.getSession(),goodId);
@@ -54,6 +60,15 @@ public class CartController {
     @ResponseBody
     @RequestMapping(value = "/changeCount",method = RequestMethod.POST)
     public String changeCount(Long id, Integer count){
+        cartService.addInCart(id, request.getSession(), count);
+        return "ok";
+    }
+    /**
+     * Метод изменения количества товара(для ajax)
+     */
+    @ResponseBody
+    @RequestMapping(value = "/changeCount2",method = RequestMethod.POST)
+    public String changeCount2(Long id, Integer count){
         cartService.addInCart(id, request.getSession(), count);
         return "ok";
     }

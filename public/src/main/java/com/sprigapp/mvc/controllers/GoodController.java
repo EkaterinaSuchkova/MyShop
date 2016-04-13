@@ -19,13 +19,15 @@ public class GoodController {
 
     @Autowired
     private GoodService goodService;
-
+    /**
+     * Вывод карточки товара с указанным id
+     */
     @IncludeCategoryInfo
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String showInfo(@PathVariable("id") Long goodId, Model model){
         GoodInfo goodInfo = goodService.getGood(goodId);
         model.addAttribute("goodInfo", goodInfo);
-        return "goodInfo";
+        return "goodDetail/goodInfo";
     }
 
 }

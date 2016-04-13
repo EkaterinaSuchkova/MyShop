@@ -8,7 +8,7 @@
     <script src="/resources/js/bootstrap.js" defer ></script>
 </head>
 <body>
-<#include "header.ftl">
+<#include "../template/header.ftl">
     ${message!"Сообщения нет!"}
 <br>
 Catalog page 1 : <a href="/catalog/1" class="red_link">link</a><br>

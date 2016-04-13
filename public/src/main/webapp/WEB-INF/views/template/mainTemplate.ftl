@@ -42,6 +42,7 @@
 <script src="/resources/js/jquery.prettyPhoto.js"></script>
 <script src="/resources/js/main.js"></script>
 <script src="/resources/js/count.js"></script>
+<script src="/resources/js/newCount.js"></script>
 </body>
 </html>
 </#macro>

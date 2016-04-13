@@ -27,7 +27,9 @@ public class CartService {
     @Autowired
     private CartRepository cartRepository;
 
-
+    /**
+     * Метод добавления и обновления товара в сессии и базе данных
+     */
     @Transactional
     public void addInCart(Long goodId, HttpSession session, Integer count){//, Long userId) {
         CartSessionInfo cart = (CartSessionInfo) session.getAttribute(Constants.SESSION_CART);
@@ -57,11 +59,10 @@ public class CartService {
 //            cartRepository.update(cartDB.get(0));
 //        }
     }
-    @Transactional
-    public List<GoodInfo> getGoodByGoodIdFromCart(Long goodId){
-        return cartRepository.getGoodByGoodIdFromCart(goodId);
-    }
 
+    /**
+     * Метод удаления товара из корзины - сессии и корзины - бд
+     */
     @Transactional
     public void deleteFromCart(HttpSession session,Long goodId) {
         CartSessionInfo cart = (CartSessionInfo) session.getAttribute(Constants.SESSION_CART);
@@ -75,6 +76,9 @@ public class CartService {
         //обновляем в бд
 //        cartRepository.deleteFromCartByGoodId(goodId);
     }
+    /**
+     * Метод удаления всех товаров из корзины-сессии и корзины-бд, нужен при оформлении заказа.
+     */
     @Transactional
     public void deleteAllFromCart(HttpSession session) {
         CartSessionInfo cart = (CartSessionInfo) session.getAttribute(Constants.SESSION_CART);

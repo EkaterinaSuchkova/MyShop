@@ -13,16 +13,24 @@ public class AddressInfo {
     @Column(name = "id")   // обозначает имя колонки, соответствующей данному полю
     @GeneratedValue(strategy = GenerationType.AUTO)  // определяет способ генерации
     private Long id;
-
+    /**
+     * Город
+     */
     @Column(length = 50, nullable = false)
     private String city;
-
+    /**
+     * Улица
+     */
     @Column(length = 50)
     private String street;
-
+    /**
+     * Дом
+     */
     @Column(length = 25)
     private String house;
-
+    /**
+     * Квартира
+     */
     @Column(length = 25)
     private String flat;
 

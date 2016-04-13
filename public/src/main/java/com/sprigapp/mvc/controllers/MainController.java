@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class MainController {
-
+	/**
+	 * Отображение главной страницы сайта
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 		model.addAttribute("message", "Hello world!");
-		return "main";
+		return "main/main";
 	}
 }

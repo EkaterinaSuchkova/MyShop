@@ -1,4 +1,4 @@
-<#include "mainTemplate.ftl">
+<#include "../template/mainTemplate.ftl">
 <@mainTemplate title="Home | MyShop"
 styles=["css/bootstrap.min.css","css/font-awesome.min.css","css/prettyPhoto.css","css/price-range.css","css/animate.css","main.css","css/responsive.css"]
 scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/price-range.js","js/jquery.prettyPhoto.js","js/main.js","js/html5shiv.js"]/>
@@ -41,7 +41,7 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
                     <td class="cart_quantity">
                         <div class="cart_quantity_button">
                             <a class="cart_quantity_up changeCount" data-id="${goodId}" data-count="${Session.cart.getCount(goodId)+1}" href="#"> + </a>
-                            <input id="count" class="cart_quantity_input" type="text" name="quantity" value="${Session.cart.getCount(goodId)}" autocomplete="off" size="2">
+                            <input id="count" class="cart_quantity_input" type="text" name="quantity" data-id="${goodId}" value="${Session.cart.getCount(goodId)}" autocomplete="off" size="2">
                             <a class="cart_quantity_down changeCount" data-id="${goodId}" data-count="${Session.cart.getCount(goodId)-1}" href="#"> - </a>
                         ${Session.cart.getCount(goodId)}
                         </div>
@@ -152,4 +152,5 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
 <script src="/resources/js/jquery.scrollUp.min.js"></script>
 <script src="/resources/js/jquery.prettyPhoto.js"></script>
 <script src="/resources/js/main.js"></script>
+<script src="/resources/js/newCount.js"></script>
 </#macro>

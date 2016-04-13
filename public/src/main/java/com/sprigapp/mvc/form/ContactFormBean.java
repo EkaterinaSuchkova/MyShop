@@ -8,6 +8,9 @@ import javax.validation.constraints.Size;
 /**
  * Created by Катя on 08.04.2016.
  */
+/**
+ * Класс описывающий форму обратной связи
+ */
 public class ContactFormBean {
 
     @NotEmpty(message = "Поле обязательно для заполнения")

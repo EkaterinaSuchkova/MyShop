@@ -8,6 +8,9 @@ import javax.validation.constraints.Size;
 /**
  * Created by Катя on 07.04.2016.
  */
+/**
+ * Класс описывающий форму оформления заказа
+ */
 public class OrderFormBean {
 
     @NotEmpty(message = "Поле обязательно для заполнения")

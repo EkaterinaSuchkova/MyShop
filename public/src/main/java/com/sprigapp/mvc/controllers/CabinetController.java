@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/cabinet")
 public class CabinetController {
-
+    /**
+     * Рендеринг страницы личного кабинета пользователя
+     */
     @RequestMapping(method = RequestMethod.GET)
     public String renderCabinetPage() {
-        return "cabinetPage";
+        return "cabinet/cabinetPage";
     }
 }
