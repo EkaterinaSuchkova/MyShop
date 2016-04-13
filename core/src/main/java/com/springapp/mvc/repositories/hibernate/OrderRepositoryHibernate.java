@@ -22,8 +22,8 @@ public class OrderRepositoryHibernate implements OrderRepository {
     }
 
     @Override
-    public void addInOrder(GoodInfo goodInfo) {
-        curSession().save(goodInfo);
+    public void addInOrder(OrderInfo orderInfo) {
+        curSession().save(orderInfo);
     }
 
     @Override

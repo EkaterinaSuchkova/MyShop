@@ -45,6 +45,13 @@ public class OrderInfo {
 
     public OrderInfo(){}
 
+    public OrderInfo(String name, Date creationDate, UserInfo userInfo, List<GoodInfo> goods) {
+        this.name = name;
+        this.creationDate = creationDate;
+        this.userInfo = userInfo;
+        this.goods = goods;
+    }
+
     public Long getId() {
         return id;
     }

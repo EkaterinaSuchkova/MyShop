@@ -51,7 +51,7 @@ public class RegistrationController {
             return "registrtion/registration";
         }
         userService.add(new UserInfo(registrationFormBean.getFirstName().concat(" ").concat(registrationFormBean.getLastName()),
-                registrationFormBean.getEmail(),registrationFormBean.getEmail(),DigestUtils.md5DigestAsHex(registrationFormBean.getPassword().getBytes()),false,"ROLE_USER",
+                registrationFormBean.getEmail(),registrationFormBean.getEmail(),DigestUtils.md5DigestAsHex(registrationFormBean.getPassword().getBytes()),true,"ROLE_USER",
                 new AddressInfo(1L)));
         System.out.println(registrationFormBean);
         return "login/login";

@@ -43,11 +43,10 @@ scripts=["js/jquery.js","js/bootstrap.min.js","js/jquery.scrollUp.min.js","js/pr
                             <a class="cart_quantity_up changeCount" data-id="${goodId}" data-count="${Session.cart.getCount(goodId)+1}" href="#"> + </a>
                             <input id="count" class="cart_quantity_input" type="text" name="quantity" data-id="${goodId}" value="${Session.cart.getCount(goodId)}" autocomplete="off" size="2">
                             <a class="cart_quantity_down changeCount" data-id="${goodId}" data-count="${Session.cart.getCount(goodId)-1}" href="#"> - </a>
-                        ${Session.cart.getCount(goodId)}
                         </div>
                     </td>
                     <td class="cart_total">
-                        <p class="cart_total_price">${Session.cart.getCount(goodId)*good[goodId?number-1].price?number}</p>
+                        <p class="cart_total_price" id="totalPrice">${Session.cart.getCount(goodId)*good[goodId?number-1].price?number}</p>
                     </td>
                     <td class="cart_delete">
                         <a class="cart_quantity_delete" href="/cart/delete/${goodId}"><i class="fa fa-times"></i></a>
